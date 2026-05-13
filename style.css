@@ -2,4 +2,22 @@ body{
   font-family: Arial;
   text-align:center;
   background:#f4f4f4;
+}.dark{
+    background:#111;
+    color:blue;
+}
+
+nav a.active{
+    color:orange;
+}
+
+.reveal{
+    opacity:0;
+    transform:translateY(50px);
+    transition:all 0.6s ease;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
 }
