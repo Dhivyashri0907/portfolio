@@ -1,23 +1,274 @@
-body{
-  font-family: Arial;
-  text-align:center;
-  background:#f4f4f4;
-}.dark{
-    background:#111;
-    color:blue;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
 }
 
+body{
+  background:#0f172a;
+  color:white;
+}
+
+header{
+  position:fixed;
+  width:100%;
+  top:0;
+  left:0;
+  padding:20px 10%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(15,23,42,0.8);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.logo{
+  font-size:28px;
+  color:#38bdf8;
+  text-decoration:none;
+  font-weight:700;
+}
+
+nav a{
+  color:white;
+  margin-left:30px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+nav a:hover,
 nav a.active{
-    color:orange;
+  color:#38bdf8;
+}
+
+#theme-toggle{
+  background:none;
+  border:none;
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+
+section{
+  min-height:100vh;
+  padding:100px 10%;
+}
+
+.home{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.home-content{
+  max-width:600px;
+}
+
+.home-content h1{
+  font-size:60px;
+}
+
+.home-content h1 span{
+  color:#38bdf8;
+}
+
+.home-content h3{
+  margin:20px 0;
+  font-size:32px;
+}
+
+.home-content p{
+  line-height:1.8;
+  color:#cbd5e1;
+}
+
+.social-icons{
+  margin:25px 0;
+}
+
+.social-icons a{
+  color:white;
+  font-size:24px;
+  margin-right:20px;
+  transition:0.3s;
+}
+
+.social-icons a:hover{
+  color:#38bdf8;
+}
+
+.btn{
+  display:inline-block;
+  padding:12px 30px;
+  background:#38bdf8;
+  color:white;
+  border-radius:30px;
+  text-decoration:none;
+  transition:0.3s;
+  border:none;
+  cursor:pointer;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+.home-img img{
+  width:350px;
+  border-radius:50%;
+  border:5px solid #38bdf8;
+  box-shadow:0 0 40px #38bdf8;
+}
+
+.heading{
+  text-align:center;
+  font-size:40px;
+  margin-bottom:50px;
+  color:#38bdf8;
+}
+
+.about-container{
+  display:flex;
+  align-items:center;
+  gap:50px;
+  flex-wrap:wrap;
+}
+
+.about-img img{
+  width:300px;
+  border-radius:20px;
+}
+
+.about-content{
+  flex:1;
+}
+
+.skills-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:30px;
+}
+
+.skill-box{
+  background:#1e293b;
+  padding:40px;
+  text-align:center;
+  border-radius:20px;
+  transition:0.3s;
+}
+
+.skill-box:hover{
+  transform:translateY(-10px);
+}
+
+.skill-box i{
+  font-size:50px;
+  color:#38bdf8;
+}
+
+.project-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+}
+
+.project-card{
+  background:#1e293b;
+  border-radius:20px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.project-card:hover{
+  transform:translateY(-10px);
+}
+
+.project-card img{
+  width:100%;
+}
+
+.project-content{
+  padding:20px;
+}
+
+.contact form{
+  max-width:700px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.contact input,
+.contact textarea{
+  padding:15px;
+  border:none;
+  border-radius:10px;
+  background:#1e293b;
+  color:white;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:#020617;
 }
 
 .reveal{
-    opacity:0;
-    transform:translateY(50px);
-    transition:all 0.6s ease;
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s;
 }
 
 .reveal.active{
-    opacity:1;
-    transform:translateY(0);
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* DARK MODE */
+
+.light-mode{
+  background:#f8fafc;
+  color:#0f172a;
+}
+
+.light-mode header{
+  background:rgba(255,255,255,0.8);
+}
+
+.light-mode nav a,
+.light-mode #theme-toggle{
+  color:#0f172a;
+}
+
+.light-mode .skill-box,
+.light-mode .project-card,
+.light-mode .contact input,
+.light-mode .contact textarea{
+  background:white;
+  color:#0f172a;
+}
+
+@media(max-width:991px){
+
+  .home{
+    flex-direction:column-reverse;
+    text-align:center;
+  }
+
+  .home-img img{
+    width:250px;
+    margin-bottom:40px;
+  }
+
+  nav{
+    display:none;
+  }
+
 }
