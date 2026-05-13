@@ -1,134 +1,140 @@
-// ==========================
-// DARK MODE TOGGLE
-// ==========================
 
-const darkModeBtn = document.getElementById("dark-mode-btn");
-
-darkModeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-
-    // Save mode in local storage
-    if (document.body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-    } else {
-        localStorage.setItem("theme", "light");
-    }
-});
-
-// Load saved theme
-window.addEventListener("load", () => {
-    const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-    }
-});
+    
 
 
-// ==========================
-// SMOOTH SCROLLING
-// ==========================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute("href"))
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-    });
-});
-
-
-// ==========================
 // TYPING EFFECT
-// ==========================
 
-const typingText = [
-    "Web Developer",
-    "Frontend Developer",
-    "JavaScript Programmer",
-    "UI Designer"
+const textArray = [
+  "Frontend Developer",
+  "Web Designer",
+  "JavaScript Developer",
+  "Freelancer"
 ];
 
-let count = 0;
-let index = 0;
-let currentText = "";
-let letter = "";
+let typingText = document.getElementById("typing");
 
-(function type() {
+let arrayIndex = 0;
+let charIndex = 0;
 
-    if (count === typingText.length) {
-        count = 0;
+function typeEffect(){
+
+  if(charIndex < textArray[arrayIndex].length){
+
+    typingText.textContent += textArray[arrayIndex].charAt(charIndex);
+
+    charIndex++;
+
+    setTimeout(typeEffect,100);
+
+  }
+  else{
+
+    setTimeout(eraseEffect,1500);
+
+  }
+
+}
+
+function eraseEffect(){
+
+  if(typingText.textContent.length > 0){
+
+    typingText.textContent =
+    typingText.textContent.slice(0,-1);
+
+    setTimeout(eraseEffect,50);
+
+  }
+  else{
+
+    arrayIndex++;
+
+    if(arrayIndex >= textArray.length){
+      arrayIndex = 0;
     }
 
-    currentText = typingText[count];
-    letter = currentText.slice(0, ++index);
+    charIndex = 0;
 
-    document.getElementById("typing").textContent = letter;
+    setTimeout(typeEffect,500);
 
-    if (letter.length === currentText.length) {
-        count++;
-        index = 0;
-        setTimeout(type, 1000);
-    } else {
-        setTimeout(type, 120);
+  }
+
+}
+
+window.onload = typeEffect;
+
+
+// SCROLL REVEAL
+
+window.addEventListener("scroll", reveal);
+
+function reveal(){
+
+  let reveals = document.querySelectorAll(".reveal");
+
+  for(let i=0;i<reveals.length;i++){
+
+    let windowHeight = window.innerHeight;
+
+    let revealTop =
+    reveals[i].getBoundingClientRect().top;
+
+    let revealPoint = 100;
+
+    if(revealTop < windowHeight - revealPoint){
+
+      reveals[i].classList.add("active");
+
     }
 
-})();
+  }
+
+}
 
 
-// ==========================
-// ACTIVE NAVBAR LINK
-// ==========================
+// ACTIVE NAVBAR
 
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav a");
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-    let current = "";
+  let current = "";
 
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
+  sections.forEach(section=>{
 
-        if (pageYOffset >= sectionTop - 60) {
-            current = section.getAttribute("id");
-        }
-    });
+    const sectionTop = section.offsetTop;
 
-    navLinks.forEach(link => {
-        link.classList.remove("active");
+    if(scrollY >= sectionTop - 150){
 
-        if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("active");
-        }
-    });
+      current = section.getAttribute("id");
+
+    }
+
+  });
+
+  navLinks.forEach(link=>{
+
+    link.classList.remove("active");
+
+    if(link.getAttribute("href") == `#${current}`){
+
+      link.classList.add("active");
+
+    }
+
+  });
 
 });
 
 
-// ==========================
-// SCROLL REVEAL ANIMATION
-// ==========================
+// DARK MODE
 
-const revealElements = document.querySelectorAll(".reveal");
+const themeBtn =
+document.getElementById("theme-toggle");
 
-function revealOnScroll() {
+themeBtn.addEventListener("click",()=>{
 
-    revealElements.forEach(element => {
+  document.body.classList.toggle("light-mode");
 
-        const windowHeight = window.innerHeight;
-        const revealTop = element.getBoundingClientRect().top;
-        const revealPoint = 100;
-
-        if (revealTop < windowHeight - revealPoint) {
-            element.classList.add("active");
-        }
-
-    });
-
-}
-
-window.addEventListener("scroll", revealOnScroll);
+});
